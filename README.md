@@ -1,109 +1,80 @@
-# 🛒 Retail Sales Insights Dashboard (Power BI + DAX)
+# Retail Sales Insight Dashboard
 
-An end-to-end business intelligence project analyzing retail performance across
-customers, products, categories, and regions using the Superstore dataset.
-This dashboard provides actionable insights on sales, profitability, discount impact,
-and customer behavior.
+A multi-page Power BI dashboard built on the Superstore dataset, analysing 9,000+ retail transactions across sales, profit, customer segments, and regional performance. Designed to answer the questions a retail business manager would actually ask.
 
 ---
 
-## 📌 Project Overview
-This project demonstrates a full data analytics workflow:
+## Dashboard pages
 
-1. Data cleaning & preprocessing    
-2. DAX measure creation for KPIs  
-3. Multi-page Power BI dashboard  
-4. Business insights & recommendations  
-
-The final dashboard helps answer:
-- Which customer segments and regions drive profit?
-- Which products or categories are loss-making and why?
-- How do discounts impact profitability?
-- Which customers contribute most to revenue?
-- What geographic areas should the business prioritize?
+| Page | What it shows |
+|---|---|
+| **Overview** | Total sales, profit, orders, and YoY growth at a glance |
+| **Product Performance** | Top/bottom products, category profitability, discount impact |
+| **Customer Segments** | Segment-wise revenue, order frequency, and value distribution |
+| **Regional Analysis** | State and region-level sales and profit breakdown |
+| **Trends** | Monthly and quarterly sales trends with seasonality |
 
 ---
 
-## 🧰 Tech Stack
-- **Power BI Desktop**  
-- **DAX** (Advanced Measures)  
-- **CSV / Excel** for dataset  
-- **Power Query** for transformations  
+## DAX measures built
+
+15+ custom DAX measures including:
+
+- `YoY Sales Growth %` — year-over-year comparison using `SAMEPERIODLASTYEAR`
+- `Profit Margin %` — dynamic margin calculation per filter context
+- `Discount Impact` — quantifies revenue lost to discounting
+- `Customer LTV` — estimated lifetime value per customer segment
+- `MoM Growth` — month-over-month delta using `DATEADD`
+- `Running Total Sales` — cumulative sales using `DATESYTD`
 
 ---
 
-## 📂 Project Structure
-Retail-Sales-Insights-Superstore/
-│── data/
-│ └── superstore.csv
-│── powerbi/
-│ └── Retail_Sales_Dashboard.pbix
-└── README.md (this file)
+## Key insights uncovered
 
+- The **Technology** category had the highest revenue but Tables sub-category was consistently loss-making due to deep discounting
+- **Corporate segment** customers had higher average order values than Consumer, but Consumer had 2x the volume
+- The **South region** underperformed on profit margin despite moderate sales — driven by high discount rates
+- Seasonal peaks in **November–December** contributed ~28% of annual revenue
 
 ---
 
-## 📊 Dashboard Pages & Features
+## Project structure
 
-### **1️⃣ Executive Overview**
-- KPIs: Total Sales, Total Profit, Orders, AOV, Profit Margin  
-- Monthly Sales & Profit Trend  
-- Segment-wise Sales & Profit  
-- Slicers: Year, Region, Category  
-
----
-
-### **2️⃣ Customer Analytics**
-- Top 10 Customers by Sales  
-- Customer Profitability Table (with conditional formatting)  
-- Sales Distribution Histogram  
-- Segment-wise Customer Performance  
-- Region & Segment slicers  
-
-Key Questions Answered:
-- Who are the highest-value customers?
-- Which customers have negative or low margin?
-- How does customer behavior vary by segment?
+```
+retail-sales-insight-dashboard/
+├── dashboard/
+│   └── RetailInsights.pbix        # Power BI file
+├── data/
+│   └── superstore.xlsx            # Source dataset
+├── screenshots/
+│   ├── overview.png
+│   ├── product_performance.png
+│   └── regional_analysis.png
+└── README.md
+```
 
 ---
 
-### **3️⃣ Product & Category Analytics**
-- Sales by Category  
-- Profit by Sub-Category (sorted to reveal loss-makers)  
-- Product-level table with conditional formatting  
-- Discount vs Profit scatter plot  
-- Drilldown: Category → Sub-category  
+## How to open
 
-Key Insights:
-- Identify products causing financial loss  
-- Understand discount misuse & its impact on profit  
-- Compare category vs sub-category profitability  
+1. Download and install [Power BI Desktop](https://powerbi.microsoft.com/desktop/) (free)
+2. Clone this repo and open `dashboard/RetailInsights.pbix`
+3. Data is embedded — no additional setup needed
 
 ---
 
-### **4️⃣ Geography & Regional Performance**
-- Filled Map: Sales by State  
-- Bubble Map: Profit by State  
-- Regional Sales & Profit Comparison  
-- State-level Profitability Table  
-- Discount vs Profit by Region  
+## Dataset
 
-Key Insights:
-- Which regions drive most revenue and profit?
-- Which states are unprofitable?
-- How does discounting vary by region?
+[Superstore Sales Dataset](https://www.kaggle.com/datasets/vivek468/superstore-dataset-final) — a widely-used retail analytics dataset with orders, customers, products, and regional data.
 
 ---
 
-## 📐 Core DAX Measures
+## Tech stack
 
-```DAX
-Total Sales = SUM('superstore'[Sales])
-Total Profit = SUM('superstore'[Profit])
-Total Orders = DISTINCTCOUNT('superstore'[Order ID])
-Average Order Value (AOV) = DIVIDE([Total Sales], [Total Orders])
-Profit Margin % = DIVIDE([Total Profit], [Total Sales])
-Sales LY = CALCULATE([Total Sales], SAMEPERIODLASTYEAR('DateTable'[Date]))
-Sales YoY % = DIVIDE([Total Sales] - [Sales LY], [Sales LY])
-Loss Product = IF([Total Profit] < 0, "Loss", "Profit")
-Average Discount = AVERAGE('superstore'[Discount])
+![Power BI](https://img.shields.io/badge/Power%20BI-F2C811?style=flat&logo=powerbi&logoColor=black)
+![DAX](https://img.shields.io/badge/DAX-Measures-yellow?style=flat)
+![Excel](https://img.shields.io/badge/Excel-Data%20Source-217346?style=flat&logo=microsoft-excel&logoColor=white)
+
+---
+
+> **Author:** Sakshi · [GitHub](https://github.com/sakshi2433) · [Email](mailto:sakshi240905@gmail.com)
